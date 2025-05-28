@@ -1,4 +1,7 @@
 @import "tailwindcss";
-@plugin "daisyui"{
-     themes: light --default
+@plugin "daisyui"
+
+.custom-shape {
+  border-top-left-radius: 50px;
+  border-bottom-right-radius: 50px;
 }

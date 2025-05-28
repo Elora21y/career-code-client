@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
+import { AuthContext } from '../context/AuthContext';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
+  const {logout , users} = use(AuthContext)
 
+  const handleLogout = () =>{
+    logout()
+    .then(() =>{
+      toast.success('Successfully logout')
+    })
+    .catch(error => {
+      toast.error(error. message)
+    })
+  }
     const links = <>
      <li><NavLink to='/'>Home</NavLink></li>
             <li><a>Submenu 2</a></li>
     </>
     return (
-        <div className="navbar bg-base-100 shadow-sm">
+        <div className="navbar bg-base-100 shadow-sm  ">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -24,21 +36,23 @@ const Navbar = () => {
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-      <li><a>Item 1</a></li>
-      <li>
-        <details>
-          <summary>Parent</summary>
-          <ul className="p-2">
+      
             {links}
-          </ul>
-        </details>
-      </li>
-      <li><a>Item 3</a></li>
+          
     </ul>
   </div>
   <div className="navbar-end">
-    <Link to='/login' className="btn">Login</Link>
+    {
+      users ? 
+      <>
+      <button className='btn' onClick={handleLogout}> Logout</button>
+      </>
+      :
+      <>
+      <Link to='/login' className="btn">Login</Link>
     <Link to='/register' className="btn">Register</Link>
+      </>
+    }
   </div>
 </div>
     );
