@@ -5,6 +5,9 @@ import RootLayout from "../layout/RootLayout";
 import Home from "../pages/home/Home";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import JobDetails from "../pages/JobDetails";
+import PrivateRouter from "./PrivateRouter";
+import ApplyJob from "../pages/ApplyJob";
 
 export const router = createBrowserRouter([
     {
@@ -14,6 +17,16 @@ export const router = createBrowserRouter([
             {
                 index : true,
                 Component : Home,
+            },
+            {
+                path : '/job-details/:id',
+                element : <PrivateRouter><JobDetails/></PrivateRouter>,
+                loader : ({params}) => fetch(`http://localhost:2100/jobs/${params.id}`)
+            },
+            {
+                path : '/job-apply/:id',
+                element : <PrivateRouter><ApplyJob/></PrivateRouter>,
+                // loader : ({params}) => fetch(`http://localhost:2100/jobs/${params.id}`)
             },
             {
                 path : '/register',

@@ -1,7 +1,4 @@
 @import "tailwindcss";
-@plugin "daisyui"
+@plugin "daisyui";
 
-.custom-shape {
-  border-top-left-radius: 50px;
-  border-bottom-right-radius: 50px;
-}
+

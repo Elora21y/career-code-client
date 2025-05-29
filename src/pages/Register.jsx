@@ -3,9 +3,16 @@ import React, { use } from "react";
 import RegisterLottie from "../assets/lottie/register.json";
 import { AuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
+import { useLocation, useNavigate } from "react-router";
 
 const Register = () => {
   const { createUser , signGoogle} = use(AuthContext);
+   const location = useLocation();
+   console.log(location)
+    const from = location.state || "/";
+    const navigate = useNavigate();
+
+
   const handleSignUp = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -15,16 +22,19 @@ const Register = () => {
     .then(result => {
         console.log(result)
         toast.success('Successfully Signup')
+        navigate(from);
     })
     .catch(error =>{
         toast.error(error.message)
         
     })
   };
+
   const handleGoogleLogin = () =>{
     signGoogle()
     .then(result => {
       console.log(result)
+      navigate(from);
     })
     .catch(error => {
       console.log(error.message)

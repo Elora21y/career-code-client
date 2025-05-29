@@ -3,9 +3,15 @@ import React, { use } from "react";
 import LoginLottie from "../assets/lottie/login.json";
 import { AuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
+import { Link, useLocation, useNavigate } from "react-router";
 
 const Login = () => {
   const { loginUser, signGoogle } = use(AuthContext);
+  const location = useLocation();
+  const from = location.state || "/";
+  const navigate = useNavigate();
+
+
   const handleSignin = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -13,17 +19,20 @@ const Login = () => {
     // console.log(formInformation)
     loginUser(email, password)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
         toast.success("Successfully Login");
+        navigate(from);
       })
       .catch((error) => {
-        console.log(error.message);
+        toast.error(error.message);
       });
   };
+
   const handleGoogleLogin = () => {
     signGoogle()
       .then((result) => {
         console.log(result);
+        navigate(from)
       })
       .catch((error) => {
         console.log(error.message);
@@ -96,6 +105,8 @@ const Login = () => {
               </svg>
               Login with Google
             </button>
+            {/* redirect */}
+            <p>Do not have and account ? Please <Link to='/register' className="underline" state={location}>Register</Link></p>
           </div>
         </div>
       </div>

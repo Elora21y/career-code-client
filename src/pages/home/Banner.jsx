@@ -5,8 +5,8 @@ import team2 from '../../assets/team/team2.jpg'
 
 const Banner = () => {
     return (
-        <div className="hero bg-base-200 min-h-screen">
-  <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="hero bg-base-200 p-5 my-10">
+  <div className="hero-content flex-col lg:flex-row-reverse ">
     {/* <motion.img 
     initial ={{ opacity : 0 , scale : 0.70}}  transition={{ type: "keyframes"  , duration : 1}} animate={{ scale: 1 , opacity : 1}}
     //  whileHover={{ scale: 1.2 }}
@@ -38,13 +38,13 @@ const Banner = () => {
         initial = {{
             y : 80,
             opacity : 0,
-              boxShadow: "0px 0px #000" 
+              // boxShadow: "0px 0px #000" 
         }}
          animate = {{
        transition : { duration : 0.6},
         y : 0,
         opacity : 1,
-        boxShadow: "10px 10px #000",
+        // boxShadow: "10px 10px #000",
     }}
     
     viewport={{once : true}}
