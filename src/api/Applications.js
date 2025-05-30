@@ -1,0 +1,1 @@
+export const MyApplicationsPromise= (email) => fetch(`http://localhost:2100/applications?email=${email}`).then(res => res.json())

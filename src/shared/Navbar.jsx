@@ -17,7 +17,13 @@ const Navbar = () => {
   }
     const links = <>
      <li><NavLink to='/'>Home</NavLink></li>
-            <li><a>Submenu 2</a></li>
+      {
+        users &&
+             <>
+             <li><NavLink to='/my-applications'>My Applications</NavLink></li>
+             {/* <li><NavLink to='/my-applications'></NavLink></li> */}
+             </>
+      }
     </>
     return (
         <div className="navbar bg-base-100 shadow-sm  ">
