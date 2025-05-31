@@ -21,7 +21,8 @@ const Navbar = () => {
         users &&
              <>
              <li><NavLink to='/my-applications'>My Applications</NavLink></li>
-             {/* <li><NavLink to='/my-applications'></NavLink></li> */}
+             <li><NavLink to='/add-job'>Add Job</NavLink></li>
+             <li><NavLink to='/my-posted-job'>My Posted Job</NavLink></li>
              </>
       }
     </>

@@ -1,0 +1,1 @@
+export const AddJobPromise = email => fetch(`http://localhost:2100/jobs?email=${email}`).then(res => res.json())
