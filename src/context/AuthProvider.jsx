@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase/firebase-init";
 import { Toaster } from "react-hot-toast";
+import axios from "axios";
 
 
 const googleProvider = new GoogleAuthProvider()
@@ -31,11 +32,34 @@ const AuthProvider = ({ children }) => {
         onAuthStateChanged(auth , (currentUser) =>{
             setUsers(currentUser)
             setLoading(false)
+            if(currentUser?.email) {
+              axios.post('http://localhost:2100/jwt' ,{email : currentUser.email} , 
+                {withCredentials : true}
+              )
+              .then(res =>{
+                console.log(res.data)
+              })
+              .catch(err =>{
+                console.log(err.message)
+              })
+            }
+            // if(currentUser?.email){
+            //   const userData ={email : currentUser.email}
+            //   axios.post('http://localhost:2100/jwt' , userData,
+            //     {withCredentials : true}
+            //   )
+            //   .then(res =>{
+            //     console.log(res.data)
+            //   })
+            //   .catch(err =>{
+            //     console.log(err.message)
+            //   })
+            // }
         })
     
     return() => unsubscribe()
   },[])
-// console.log(users)
+console.log(users)
 
 const signGoogle = () =>{
   setLoading(true)

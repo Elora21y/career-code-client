@@ -1,1 +1,3 @@
-export const AddJobPromise = email => fetch(`http://localhost:2100/jobs?email=${email}`).then(res => res.json())
+export const AddJobPromise = email => fetch(`http://localhost:2100/jobs/applications?email=${email}` , {credentials : 'include'}).then(res => res.json()).catch(err =>{
+    console.log(err.message)
+})

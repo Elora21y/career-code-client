@@ -3,6 +3,7 @@ import { Link } from "react-router";
 
 const JobList = ({ AddJobPromise }) => {
   const jobs = use( AddJobPromise );
+  console.log(jobs)
   return (
     <div>
       <div className="overflow-x-auto">
@@ -16,6 +17,7 @@ const JobList = ({ AddJobPromise }) => {
               <th>Name</th>
               <th>Job</th>
               <th>Favorite Color</th>
+              <th>Apply Count</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -23,7 +25,7 @@ const JobList = ({ AddJobPromise }) => {
             {/* row 1 */}
             {
                 jobs.map((job , index) => 
-                    <tr>
+                    <tr key={job._id}>
               <th>
                 {index+1}
               </th>
@@ -51,8 +53,11 @@ const JobList = ({ AddJobPromise }) => {
                 </span>
               </td>
               <td>{job.jobType}</td>
+              <td>
+                {job.application_count}
+              </td>
               <th>
-                <Link to={`/view-application/${job._id}`} className="btn btn-xs">!</Link>
+                <Link to={`/applications/${job._id}`} className="btn btn-xs">!</Link>
               </th>
             </tr>
                 )

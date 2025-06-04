@@ -2,7 +2,7 @@ import React from 'react';
 
 const ApplicationRow = ({application , index}) => {
     const {applicant_email,company,company_logo,title,location } =application
-    console.log(application)
+    // console.log(application)
     return (
          <tr>
         <th>

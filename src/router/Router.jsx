@@ -17,6 +17,7 @@ export const router = createBrowserRouter([
     {
         path : '/' , 
         Component : RootLayout,
+        errorElement : <div>This PAge Error 401 403</div>,
         children : [
             {
                 index : true,
@@ -46,9 +47,9 @@ export const router = createBrowserRouter([
                 element : <PrivateRouter><MyPostedJob/></PrivateRouter>,
             },
             {
-                path : '/view-application/:id',
+                path : '/applications/:job_id',
                 element : <PrivateRouter><ViewApplication/></PrivateRouter>,
-                // loader : ({params}) => fetch(`http://localhost:2100/`)
+                loader : ({params}) => fetch(`http://localhost:2100/applications/job/${params.job_id}`)
             },
             {
                 path : '/register',
@@ -59,5 +60,9 @@ export const router = createBrowserRouter([
                 Component : Login
             }
         ]
+    },
+    {
+        path : '/*',
+        element : <div>This Page busy so not found</div>
     }
 ])

@@ -1,8 +1,8 @@
 import React, { use } from 'react';
 import ApplicationRow from './ApplicationRow';
 
-const ApplicationList = ({MyApplicationsPromise}) => {
-    const applications = use(MyApplicationsPromise)
+const ApplicationList = ({myApplicationsPromise}) => {
+    const applications = use(myApplicationsPromise)
     console.log(applications)
     return (
        <div className="overflow-x-auto">
